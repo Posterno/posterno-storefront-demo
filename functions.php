@@ -19,3 +19,15 @@ add_action(
 		remove_action( 'storefront_header', 'storefront_header_cart', 60 );
 	}
 );
+
+/**
+ * Load custom css file.
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function() {
+
+		wp_enqueue_style( 'posterno-demo', get_stylesheet_directory_uri() . '/dist/css/screen.css', false, '1.0.0' );
+
+	}
+);
