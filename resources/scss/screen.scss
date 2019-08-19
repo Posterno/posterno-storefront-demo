@@ -5,5 +5,9 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 
 .page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content.loaded, .page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title.loaded {
-	color: #fff !important;
+	color: #fff;
+}
+
+.page-template-template-homepage .entry-header h1 {
+	font-size:3em;
 }

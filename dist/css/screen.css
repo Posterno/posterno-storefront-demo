@@ -6,6 +6,10 @@
 }
 
 .page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-content.loaded, .page-template-template-homepage.has-post-thumbnail .type-page.has-post-thumbnail .entry-title.loaded {
-	color: #fff !important;
+	color: #fff;
+}
+
+.page-template-template-homepage .entry-header h1 {
+	font-size: 3em;
 }
 /*# sourceMappingURL=screen.css.map*/
