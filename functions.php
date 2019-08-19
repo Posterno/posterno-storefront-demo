@@ -49,13 +49,15 @@ function storefront_homepage_header() {
 }
 
 /**
- * Prevent registrations.
+ * Prevent forms processing.
  */
-add_action(
-	'pno_before_registration',
-	function() {
-
-		throw new \PNO\Exception( 'Registration is disabled for this demo.' );
-
-	}
-);
+function pno_functionality_disabled_exception() {
+	throw new \PNO\Exception( 'This functionality has been disabled for this demo.' );
+}
+add_action( 'pno_before_registration', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_password_recovery', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_password_change', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_data_erasure', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_data_request', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_delete_account', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_user_update', 'pno_functionality_disabled_exception' );
