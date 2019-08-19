@@ -28,10 +28,6 @@ add_action(
 	'wp_enqueue_scripts',
 	function() {
 
-		if ( ! is_page( get_option( 'page_on_front' ) ) ) {
-			return;
-		}
-
 		wp_enqueue_style( 'posterno-demo', get_stylesheet_directory_uri() . '/dist/css/screen.css', false, '1.0.0' );
 
 	},
@@ -51,3 +47,15 @@ function storefront_homepage_header() {
 	</header><!-- .entry-header -->
 	<?php
 }
+
+/**
+ * Prevent registrations.
+ */
+add_action(
+	'pno_before_registration',
+	function() {
+
+		throw new \PNO\Exception( 'Registration is disabled for this demo.' );
+
+	}
+);

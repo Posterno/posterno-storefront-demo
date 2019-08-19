@@ -18,4 +18,10 @@
 	max-width: none;
 	max-width: initial;
 }
+
+.woocommerce-active .site-header .main-navigation {
+	width: auto;
+	float: none;
+	margin-right: 0;
+}
 /*# sourceMappingURL=screen.css.map*/
