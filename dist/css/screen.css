@@ -12,4 +12,10 @@
 .page-template-template-homepage .entry-header h1 {
 	font-size: 3em;
 }
+
+.custom-homepage-content .entry-content {
+	text-align: left;
+	max-width: none;
+	max-width: initial;
+}
 /*# sourceMappingURL=screen.css.map*/
