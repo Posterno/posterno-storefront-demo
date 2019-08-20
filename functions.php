@@ -144,3 +144,13 @@ add_action(
 	},
 	4
 );
+
+/**
+ * Files cannot be uploaded on this demo.
+ */
+add_filter(
+	'pno_upload_file_pre_upload',
+	function() {
+		return new WP_Error( 'demo-upload', 'Files cannot be uploaded on this demo.' );
+	}
+);
