@@ -128,3 +128,19 @@ add_filter(
 
 	}
 );
+
+/**
+ * Automatically delete listings after submission.
+ */
+add_action(
+	'woocommerce_thankyou',
+	function( $order_id ) {
+		$order = wc_get_order( $order_id );
+		foreach ( $order->get_items() as $item ) {
+			if ( isset( $item['listing_id'] ) && get_post_type( $item['listing_id'] ) === 'listings' ) {
+				wp_delete_post( $item['listing_id'], true );
+			}
+		}
+	},
+	4
+);
