@@ -100,3 +100,19 @@ add_action(
 	},
 	5
 );
+
+/**
+ * Display an alert before the location taxonomy loop.
+ */
+add_action(
+	'pno_before_taxonomy_loop',
+	function() {
+
+		$object = get_queried_object();
+
+		if ( $object instanceof WP_Term && $object->taxonomy === 'listings-locations' ) {
+			echo '<div class="alert alert-primary" role="alert"><strong>Please note: this is a location taxonomy page. Listings in this page are not arranged by their coordinates.</strong></div>';
+		}
+
+	}
+);
