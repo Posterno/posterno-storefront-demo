@@ -116,3 +116,15 @@ add_action(
 
 	}
 );
+
+/**
+ * Change the message on the wc thank you page.
+ */
+add_filter(
+	'pno_paid_listings_thank_you_message',
+	function() {
+
+		return 'Your listing has been automatically deleted because this is a demo.';
+
+	}
+);
