@@ -154,3 +154,46 @@ add_filter(
 		return new WP_Error( 'demo-upload', 'Files cannot be uploaded on this demo.' );
 	}
 );
+
+/**
+ * Redirect when trying to upgrade a listing on the demo.
+ */
+add_action(
+	'wp_loaded',
+	function() {
+
+		//phpcs:ignore
+		if ( ! isset( $_POST[ 'do_listing_upgrade_nonce' ] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_POST['do_listing_upgrade_nonce'], 'do_listing_upgrade' ) ) {
+			return;
+		}
+
+		$listing_id = isset( $_POST['listing_id'] ) && ! empty( $_POST['listing_id'] ) ? absint( $_POST['listing_id'] ) : false;
+		$ref        = pno_paid_listings_get_listing_upgrade_url( $listing_id );
+
+		wp_safe_redirect(
+			add_query_arg(
+				[
+					'error' => 'demo',
+				],
+				$ref
+			)
+		);
+		exit;
+
+	},
+	5
+);
+
+/**
+ * Change message when upgrading on the demo.
+ */
+add_filter(
+	'pno_paid_listings_upgrade_error_message',
+	function() {
+		return 'Listings cannot be upgraded on this demo.';
+	}
+);
