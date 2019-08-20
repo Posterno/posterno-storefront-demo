@@ -61,3 +61,42 @@ add_action( 'pno_before_data_erasure', 'pno_functionality_disabled_exception' );
 add_action( 'pno_before_data_request', 'pno_functionality_disabled_exception' );
 add_action( 'pno_before_delete_account', 'pno_functionality_disabled_exception' );
 add_action( 'pno_before_user_update', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_listing_contact', 'pno_functionality_disabled_exception' );
+add_action( 'pno_before_listing_editing', 'pno_functionality_disabled_exception' );
+
+/**
+ * Prevent listing delete.
+ */
+add_action(
+	'init',
+	function() {
+
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
+
+		if ( ! isset( $_GET['listing_action'] ) ) {
+			return;
+		}
+
+		if ( ! isset( $_GET['listing_id'] ) ) {
+			return;
+		}
+
+		if ( ! wp_verify_nonce( $_GET['_wpnonce'], 'verify_listing_action' ) ) {
+			return;
+		}
+
+		if ( isset( $_GET['listing_action'] ) && $_GET['listing_action'] !== 'delete' ) {
+			return;
+		}
+
+		if ( ! pno_get_option( 'listing_allow_delete' ) ) {
+			return;
+		}
+
+		wp_die( 'Listings cannot be deleted in this demo.' );
+
+	},
+	5
+);
