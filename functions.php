@@ -197,3 +197,17 @@ add_filter(
 		return 'Listings cannot be upgraded on this demo.';
 	}
 );
+
+/**
+ * Lock access to admin panel.
+ */
+add_action(
+	'admin_init',
+	function() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( 'Access to the WordPress admin panel has been disabled for the purpose of this demo.' );
+		}
+
+	}
+);
