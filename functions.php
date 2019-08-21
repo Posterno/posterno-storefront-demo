@@ -211,3 +211,9 @@ add_action(
 
 	}
 );
+
+
+/**
+ * Disable edits to customer's data on WC checkout.
+ */
+add_filter( 'woocommerce_checkout_update_customer_data', '__return_false' );
