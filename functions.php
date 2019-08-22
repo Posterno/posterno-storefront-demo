@@ -223,3 +223,17 @@ add_action(
  * Disable edits to customer's data on WC checkout.
  */
 add_filter( 'woocommerce_checkout_update_customer_data', '__return_false' );
+
+/**
+ * Disable the shop page.
+ */
+add_action(
+	'template_redirect',
+	function() {
+
+		if ( is_shop() ) {
+			wp_die( 'For the purpose of this demo, the WooCommerce shop page has been disabled.' );
+		}
+
+	}
+);
