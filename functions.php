@@ -18,6 +18,12 @@ add_action(
 		remove_action( 'storefront_header', 'storefront_product_search', 40 );
 		remove_action( 'storefront_header', 'storefront_header_cart', 60 );
 		remove_action( 'storefront_homepage', 'storefront_page_content', 20 );
+		remove_action( 'homepage', 'storefront_product_categories', 20 );
+		remove_action( 'homepage', 'storefront_recent_products', 30 );
+		remove_action( 'homepage', 'storefront_featured_products', 40 );
+		remove_action( 'homepage', 'storefront_popular_products', 50 );
+		remove_action( 'homepage', 'storefront_on_sale_products', 60 );
+		remove_action( 'homepage', 'storefront_best_selling_products', 70 );
 	}
 );
 
