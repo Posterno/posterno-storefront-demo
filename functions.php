@@ -237,3 +237,22 @@ add_action(
 
 	}
 );
+
+/**
+ * Prevent access to wp-login.php
+ *
+ * @return void
+ */
+function wpum_prevent_wp_login() {
+
+	global $pagenow;
+
+	$action = ( isset( $_GET['action'] ) ) ? $_GET['action'] : '';
+
+	if ( $pagenow == 'wp-login.php' && ( ! $action || ( $action && ! in_array( $action, array( 'logout', 'lostpassword', 'rp', 'resetpass' ) ) ) ) ) {
+		$page = wp_login_url();
+		wp_safe_redirect( $page );
+		exit();
+	}
+}
+add_action( 'init', 'wpum_prevent_wp_login' );
