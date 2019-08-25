@@ -277,3 +277,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	},
 	100
 );
+
+/**
+ * Cleanup packages purchased by users on the demo.
+ *
+ * @return void
+ */
+function posterno_demo_user_packages_cleanup() {
+
+	$args = [
+		'number' => 9999,
+		'fields' => 'ID',
+	];
+
+	$users = new WP_User_Query( $args );
+
+	if ( ! empty( $users->get_results() ) && is_array( $users->get_results() ) ) {
+		foreach ( $users->get_results() as $user_id ) {
+			$packages = pno_paid_listings_get_user_packages( $user_id );
+			if ( is_array( $packages ) && ! empty( $packages ) ) {
+				$query = new \Posterno\PaidListings\Database\Queries\UserPackages();
+				foreach ( $packages as $package ) {
+					$query->delete_item( $package->get_user_package_id() );
+				}
+			}
+
+		}
+	}
+
+}
+add_action( 'pno_live_demo_packages_cleanup', 'posterno_demo_user_packages_cleanup' );
