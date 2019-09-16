@@ -67,6 +67,9 @@ function storefront_homepage_header() {
 	</div>
 
 	<?php
+
+	echo do_shortcode( '[pno-search-fakequery]' );
+
 }
 
 /**
