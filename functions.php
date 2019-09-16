@@ -51,6 +51,21 @@ function storefront_homepage_header() {
 	<header class="entry-header">
 		<h1 class="entry-title">Discover great places with Posterno</h1>
 	</header><!-- .entry-header -->
+
+	<div class="search-form posterno-template">
+		<div class="row">
+			<div class="col">
+				<?php echo do_shortcode( '[pno-search-facet facet="1"]' ); ?>
+			</div>
+			<div class="col">
+				<?php echo do_shortcode( '[pno-search-facet facet="2"]' ); ?>
+			</div>
+			<div class="col-md-2">
+				<?php echo do_shortcode( '[pno-search-submit label="Search" submit="' . home_url( 'recent-listings' ) . '"]' ); ?>
+			</div>
+		</div>
+	</div>
+
 	<?php
 }
 
