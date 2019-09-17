@@ -45,4 +45,10 @@
 	-moz-appearance: none;
 	appearance: none;
 }
+
+.widget-area select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
 /*# sourceMappingURL=screen.css.map*/

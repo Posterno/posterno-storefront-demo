@@ -325,3 +325,14 @@ function posterno_demo_user_packages_cleanup() {
 
 }
 add_action( 'pno_live_demo_packages_cleanup', 'posterno_demo_user_packages_cleanup' );
+
+/**
+ * Removes the google maps script on the recent listings page to avoid loading the gmap api multiple times
+ * when the map facet is present.
+ *
+ * @return void
+ */
+function pno_remove_maps_script_on_recent_page() {
+	wp_deregister_script( 'pno-listings-page-googlemap' );
+}
+add_action( 'wp_enqueue_scripts', 'pno_remove_maps_script_on_recent_page', 100 );
