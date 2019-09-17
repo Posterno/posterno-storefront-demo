@@ -52,8 +52,8 @@ function storefront_homepage_header() {
 		<h1 class="entry-title">Discover great places with Posterno</h1>
 	</header><!-- .entry-header -->
 
-	<div class="search-form posterno-template">
-		<div class="row">
+	<div class="pno-search-form posterno-template">
+		<div class="form-row">
 			<div class="col">
 				<?php echo do_shortcode( '[pno-search-facet facet="1"]' ); ?>
 			</div>
