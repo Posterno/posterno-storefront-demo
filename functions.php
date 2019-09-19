@@ -226,7 +226,7 @@ add_filter(
  * Lock access to admin panel.
  */
 add_action(
-	'admin_initt',
+	'admin_init',
 	function() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
