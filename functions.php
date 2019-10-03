@@ -319,7 +319,6 @@ function posterno_demo_user_packages_cleanup() {
 					$query->delete_item( $package->get_user_package_id() );
 				}
 			}
-
 		}
 	}
 
@@ -336,3 +335,21 @@ function pno_remove_maps_script_on_recent_page() {
 	wp_deregister_script( 'pno-listings-page-googlemap' );
 }
 add_action( 'wp_enqueue_scripts', 'pno_remove_maps_script_on_recent_page', 100 );
+
+/**
+ * Automatically delete the submitted claim and throw an error message.
+ */
+add_action(
+	'pno_after_claim_submission',
+	function( $id, $listing_id, $form ) {
+
+		if ( $id ) {
+			\Posterno\Claims\Plugin::instance()->queries->delete_item( $id );
+		}
+
+		throw new \PNO\Exception( 'This functionality has been disabled for this demo.' );
+
+	},
+	10,
+	3
+);
