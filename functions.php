@@ -353,3 +353,29 @@ add_action(
 	10,
 	3
 );
+
+/**
+ * Disable review submission.
+ */
+add_action(
+	'pno_reviews_before_review_submission',
+	function( $form ) {
+		throw new \PNO\Exception( 'This functionality has been disabled for this demo.' );
+	}
+);
+
+/**
+ * Prevent comment submission.
+ */
+add_filter(
+	'preprocess_comment',
+	function( $data ) {
+
+		if ( ! is_admin() ) {
+			wp_die( 'This functionality has been disabled for this demo.' );
+		}
+
+		return $data;
+
+	}
+);
