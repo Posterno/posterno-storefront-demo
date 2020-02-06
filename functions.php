@@ -379,3 +379,20 @@ add_filter(
 
 	}
 );
+
+/**
+ * Prevent storage of reports on the demo.
+ */
+add_action(
+	'wp',
+	function() {
+
+		if ( ! isset( $_POST['submit_report_nonce'] ) || ! wp_verify_nonce( $_POST['submit_report_nonce'], 'submitting_listing_report' ) || ! is_user_logged_in() ) {
+			return;
+		}
+
+		wp_die( 'This functionality has been disabled for the demo.' );
+
+	},
+	9
+);
